@@ -1,13 +1,14 @@
 import prisma from "../src/prisma.js";
 import bcrypt from "bcrypt";
 import { generateAccessToken } from "../utils/token.js";
+import emailService from "../services/email.service.js";
 
 // to register the user[website]
 export const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
-        if(!email || !name || ! password){
+        if (!email || !name || !password) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required"
@@ -24,6 +25,11 @@ export const registerUser = async (req, res) => {
         });
 
         const accessToken = generateAccessToken(user);
+
+        // Send welcome email (async, don't wait for it)
+        emailService.sendWelcomeEmail(user.email, user.name).catch(err => {
+            console.error('Failed to send welcome email:', err);
+        });
 
         res.status(201).json({
             success: true,
@@ -58,7 +64,7 @@ export const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        if(!email || !password){
+        if (!email || !password) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required"
@@ -70,7 +76,7 @@ export const loginUser = async (req, res) => {
             }
         });
 
-        if(!user){
+        if (!user) {
             return res.status(400).json({
                 success: false,
                 message: "User not found"
@@ -79,7 +85,7 @@ export const loginUser = async (req, res) => {
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
-        if(!isPasswordValid){
+        if (!isPasswordValid) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid password"
@@ -120,7 +126,7 @@ export const getCurrentUser = async (req, res) => {
             }
         });
 
-        if(!user){
+        if (!user) {
             return res.status(404).json({
                 success: false,
                 message: "User not found"

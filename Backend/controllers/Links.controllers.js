@@ -1,5 +1,6 @@
 import prisma from "../src/prisma.js";
 import { encryptSlug } from "../utils/encryption.js";
+import emailService from "../services/email.service.js";
 
 // to create a link
 export const createLink = async (req, res) => {
@@ -73,6 +74,9 @@ export const redirectLink = async (req, res) => {
         const link = await prisma.links.findUnique({
             where: {
                 slug: slug
+            },
+            include: {
+                user: true // Include user to get email for notification
             }
         });
 
@@ -101,6 +105,22 @@ export const redirectLink = async (req, res) => {
 
         // Redirect to the original URL
         res.redirect(link.url);
+
+        // Send email notification to link owner if available (async)
+        // using the newly added sendLinkClickNotification method
+        console.log(link);
+        
+        if (link.user && link.user.email) {
+            emailService.sendLinkClickNotification(
+                link.user.email,
+                link.url,
+                link.originalSlug,
+                link.slug,
+                ipAddress
+            ).catch(err => {
+                console.error("Failed to send click notification email:", err);
+            });
+        }
     } catch (error) {
         console.error("Error redirecting link:", error);
         res.status(500).json({

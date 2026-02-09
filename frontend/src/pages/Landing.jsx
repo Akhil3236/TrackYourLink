@@ -72,7 +72,7 @@ export const Landing = () => {
                     <div className="footer-links">
                         <Link to="/privacy">Privacy Policy</Link>
                         <Link to="/terms">Terms of Service</Link>
-                        <a href="mailto:support@trackyourlink.com">Contact Support</a>
+                        <Link to="/contact">Contact Support</Link>
                     </div>
                 </div>
             </footer>
