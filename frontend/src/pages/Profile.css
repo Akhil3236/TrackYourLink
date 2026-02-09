@@ -1,0 +1,365 @@
+/* Professional Profile Page Styles */
+.profile-page {
+    min-height: 100vh;
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-navbar {
+    height: var(--header-height);
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-content {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.nav-spacer {
+    width: 100px;
+    /* Adjust to match btn-back width for centering if needed */
+}
+
+.btn-back-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: transparent;
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+}
+
+.btn-back-nav:hover {
+    color: var(--primary);
+    background-color: var(--bg);
+}
+
+.profile-main {
+    flex: 1;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-card-professional {
+    background: var(--card-bg);
+    max-width: 600px;
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-cover {
+    height: 140px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    position: relative;
+}
+
+.profile-content {
+    padding: 0 2rem 2rem 2rem;
+    position: relative;
+}
+
+.profile-header-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -48px;
+    /* Pull avatar up */
+    margin-bottom: 2rem;
+}
+
+.profile-avatar-wrapper {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.profile-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    /* Use card bg for overlap border effect */
+    border: 4px solid var(--card-bg);
+    /* Creates the "cutout" look */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.avatar-initial {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.profile-fullname {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+.profile-badges {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.badge-plan,
+.badge-member {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-plan {
+    color: var(--success);
+    background-color: var(--success-bg);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.badge-member {
+    color: var(--text-secondary);
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+}
+
+.profile-divider {
+    height: 1px;
+    background-color: var(--border);
+    margin: 1rem 0 2rem 0;
+}
+
+.profile-section-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.profile-field-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.field-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+.field-data {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.field-data label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+}
+
+.field-data .value {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.btn-edit-ghost {
+    font-size: 0.75rem;
+    color: var(--success);
+    background-color: var(--success-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    cursor: default;
+}
+
+.stats-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-box {
+    background-color: white;
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon-circle.blue {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-count {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.profile-actions-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-logout-clean {
+    color: var(--error);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.btn-logout-clean:hover {
+    background-color: var(--error-bg);
+    border-color: #fca5a5;
+    color: var(--error);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .profile-cover {
+        height: 100px;
+    }
+
+    .profile-content {
+        padding: 0 1.5rem 2rem 1.5rem;
+    }
+
+    .profile-header-group {
+        margin-top: -36px;
+    }
+
+    .profile-avatar {
+        width: 72px;
+        height: 72px;
+    }
+
+    .avatar-initial {
+        font-size: 2rem;
+    }
+}
+.btn-logout-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--error);
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn-logout-header:hover {
+    background-color: var(--error-bg);
+    border-color: #fca5a5;
+    color: var(--error);
+}
+
+/* Adjust nav content to ensure title stays centered if possible, or balanced */
+.nav-content {
+    display: flex;
+    justify-content: space-between; /* This works well with 3 items */
+    align-items: center;
+}

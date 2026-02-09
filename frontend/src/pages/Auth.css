@@ -1,0 +1,152 @@
+/* Professional Authentication Styles */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: radial-gradient(circle at top right, var(--primary-light), transparent),
+        linear-gradient(to bottom, #ffffff, var(--bg));
+}
+
+.auth-card {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    /* Deeper shadow */
+    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 440px;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+}
+
+.auth-card h1 {
+    margin-bottom: 2rem;
+    font-size: 1.875rem;
+    text-align: center;
+    color: var(--text);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.auth-card .form-group {
+    margin-bottom: 0;
+}
+
+.auth-card button[type="submit"] {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.875rem;
+    font-size: 1rem;
+    font-weight: 600;
+    justify-content: center;
+}
+
+.auth-link {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.auth-link a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.25rem;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+    color: var(--primary-dark);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 2rem 1.5rem;
+        box-shadow: var(--shadow);
+    }
+}
+/* New Layout for Auth Pages with Header/Footer */
+.auth-container {
+    flex-direction: column;
+    justify-content: space-between; /* Header top, Footer bottom */
+    padding: 0; /* Let header/footer handle padding if needed, or keep page padding */
+}
+
+.auth-header {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute; /* or fixed/sticky if preferred */
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.auth-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary) 0%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.auth-footer {
+    width: 100%;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.auth-footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.auth-footer a:hover {
+    color: var(--primary);
+}
+
+/* Ensure card stays centered */
+.auth-card-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2rem;
+    margin-top: 60px; /* Offset for header */
+    margin-bottom: 60px; /* Offset for footer */
+}
