@@ -15,10 +15,15 @@ app.set('trust proxy', true);
 
 // CORS configuration
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: [
+        'https://trackur.online',
+        'http://localhost:5173',
+        process.env.FRONTEND_URL
+    ].filter(Boolean),
     credentials: true,
     optionsSuccessStatus: 200
 };
+
 
 app.use(cors(corsOptions));
 app.use(express.json());

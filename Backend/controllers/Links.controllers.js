@@ -21,7 +21,6 @@ export const createLink = async (req, res) => {
 
         const protocol = req.protocol;
         const host = req.get('host');
-        console.log(protocol, host);
         const shortenedUrl = `${protocol}://${host}/api/links/${encryptedSlug}`;
 
         const link = await prisma.links.create({
@@ -109,8 +108,7 @@ export const redirectLink = async (req, res) => {
 
         // Send email notification to link owner if available (async)
         // using the newly added sendLinkClickNotification method
-        console.log(link);
-        
+
         if (link.user && link.user.email) {
             emailService.sendLinkClickNotification(
                 link.user.email,
