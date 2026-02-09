@@ -5,7 +5,9 @@ import { CreateLinkForm } from '../components/CreateLinkForm';
 import { LinksList } from '../components/LinksList';
 import { CheckCircle, Copy, X, User, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { ensureHttps } from '../config/api';
 import './Dashboard.css';
+
 
 export const Dashboard = () => {
     const { user, logout } = useAuth();
@@ -45,7 +47,7 @@ export const Dashboard = () => {
 
     const copyToClipboard = async () => {
         try {
-            await navigator.clipboard.writeText(newLinkData.shortenedUrl);
+            await navigator.clipboard.writeText(ensureHttps(newLinkData.shortenedUrl));
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
         } catch (err) {
@@ -118,7 +120,7 @@ export const Dashboard = () => {
                                     <div className="shortened-url-container">
                                         <input
                                             type="text"
-                                            value={newLinkData.shortenedUrl}
+                                            value={ensureHttps(newLinkData.shortenedUrl)}
                                             readOnly
                                             className="shortened-url-input"
                                         />

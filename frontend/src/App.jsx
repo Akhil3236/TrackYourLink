@@ -14,7 +14,17 @@ import { Contact } from './pages/Contact';
 import './App.css';
 
 function App() {
+  // Enforce HTTPS in production
+  if (
+    typeof window !== 'undefined' &&
+    window.location.protocol === 'http:' &&
+    (window.location.hostname === 'trackur.online' || window.location.hostname === 'www.trackur.online')
+  ) {
+    window.location.href = window.location.href.replace('http:', 'https:');
+  }
+
   return (
+
     <AuthProvider>
       <Toaster
         position="bottom-center"

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Copy, Check, BarChart2, ExternalLink, Globe } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { ensureHttps } from '../config/api';
+
 
 export const LinkCard = ({ link, isLatest = false }) => {
     const [copied, setCopied] = useState(false);
@@ -8,7 +10,7 @@ export const LinkCard = ({ link, isLatest = false }) => {
 
     const copyToClipboard = async () => {
         try {
-            await navigator.clipboard.writeText(link.shortenedUrl);
+            await navigator.clipboard.writeText(ensureHttps(link.shortenedUrl));
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
         } catch (err) {
@@ -68,7 +70,7 @@ export const LinkCard = ({ link, isLatest = false }) => {
                 </div>
 
                 <div className="link-shortened-wrapper">
-                    <span className="shortened-link-text">{link.shortenedUrl}</span>
+                    <span className="shortened-link-text">{ensureHttps(link.shortenedUrl)}</span>
                     <button
                         onClick={copyToClipboard}
                         className="btn-icon-action"
@@ -77,7 +79,7 @@ export const LinkCard = ({ link, isLatest = false }) => {
                         {copied ? <Check size={16} color="var(--success)" /> : <Copy size={16} />}
                     </button>
                     <a
-                        href={link.shortenedUrl}
+                        href={ensureHttps(link.shortenedUrl)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn-icon-action"

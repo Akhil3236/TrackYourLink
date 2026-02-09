@@ -1,6 +1,18 @@
+// Helper to ensure URLs are HTTPS for production
+export const ensureHttps = (url) => {
+    if (!url) return url;
+    const isProduction = typeof window !== 'undefined' &&
+        (window.location.hostname === 'trackur.online' || window.location.hostname === 'www.trackur.online');
+
+    if (isProduction && url.startsWith('http://')) {
+        return url.replace('http://', 'https://');
+    }
+    return url;
+};
+
 // API Configuration
 export const API_CONFIG = {
-    BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000',
+    BASE_URL: ensureHttps(import.meta.env.VITE_API_BASE_URL) || 'http://localhost:3000',
     ENDPOINTS: {
         // Auth
         REGISTER: '/api/auth/register',
