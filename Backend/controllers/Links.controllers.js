@@ -19,11 +19,11 @@ export const createLink = async (req, res) => {
 
         const encryptedSlug = encryptSlug(slug);
 
-        const protocol = req.protocol;
+        const protocol = req.headers['x-forwarded-proto'] || req.protocol;
         const host = req.get('host');
 
-        console.log(host,protocol);
-        
+        console.log("Protocol Detected:", protocol, "Host:", host);
+
         const shortenedUrl = `${protocol}://${host}/api/links/${encryptedSlug}`;
 
         const link = await prisma.links.create({
