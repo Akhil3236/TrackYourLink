@@ -272,7 +272,7 @@ class EmailService {
         const mailOptions = {
             from: this.fromEmail,
             to: linkOwnerEmail,
-            subject: `New Click Detected`,
+            subject: `New Click: /${originalSlug}`,
             html: `
                 <!DOCTYPE html>
                 <html>
@@ -305,7 +305,7 @@ class EmailService {
                             <table class="data-table">
                                 <tr>
                                     <td>Link Slug</td>
-                                    <td>/${linkSlug}</td>
+                                    <td>/${originalSlug}</td>
                                 </tr>
                                 <tr>
                                     <td>Destination</td>

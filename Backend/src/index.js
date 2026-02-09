@@ -9,6 +9,10 @@ dotenv.config();
 
 const app = express();
 
+// Trust proxy to get correct req.protocol (https) when behind a load balancer/proxy
+app.set('trust proxy', true);
+
+
 // CORS configuration
 const corsOptions = {
     origin: process.env.FRONTEND_URL || 'http://localhost:5173',
