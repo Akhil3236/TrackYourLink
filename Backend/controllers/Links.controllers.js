@@ -24,7 +24,7 @@ export const createLink = async (req, res) => {
 
         console.log("Protocol Detected:", protocol, "Host:", host);
 
-        const shortenedUrl = `${protocol}://${host}/api/links/${encryptedSlug}`;
+        const shortenedUrl = `${process.env.FRONTEND_URL}/api/links/${encryptedSlug}`;
 
         const link = await prisma.links.create({
             data: {
