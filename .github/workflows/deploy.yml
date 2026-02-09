@@ -1,0 +1,37 @@
+name: Deploy Full Stack (React + Backend)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            cd ~/TrackYourLink
+            git pull origin main
+
+            echo "---- BACKEND ----"
+            cd backend
+            npm install
+            npx prisma migrate deploy
+            pm2 restart backend
+
+            echo "---- FRONTEND ----"
+            cd ../frontend
+            npm install
+            npm run build
+
+            sudo rm -rf /var/www/trackur.online/*
+            sudo cp -r dist/* /var/www/trackur.online/
+            sudo chown -R www-data:www-data /var/www/trackur.online
