@@ -1,4 +1,4 @@
-name: Deploy Full Stack (React + Backend)
+name: Deploy Full Stack
 
 on:
   push:
@@ -21,14 +21,14 @@ jobs:
             cd ~/TrackYourLink
             git pull origin main
 
-            echo "---- BACKEND ----"
-            cd backend
+            echo "----- BACKEND -----"
+            cd Backends
             npm install
             npx prisma migrate deploy
             pm2 restart backend
 
-            echo "---- FRONTEND ----"
-            cd ../frontend
+            echo "----- FRONTEND -----"
+            cd ../Frontend
             npm install
             npm run build
 
