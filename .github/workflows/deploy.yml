@@ -23,6 +23,7 @@ jobs:
 
             echo "----- BACKEND -----"
             cd Backend
+            git pull origin main
             npm install
             npx prisma migrate deploy
             pm2 restart backend
